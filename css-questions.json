@@ -1,0 +1,10 @@
+[
+    {
+        "title": "How to select a class",
+        "answer_1": "#class-name",
+        "answer_2": ".class-name",
+        "answer_3": "~class-name",
+        "answer_4": "SelectClass(class-name)",
+        "correct_answer": ".class-name"
+    }
+]

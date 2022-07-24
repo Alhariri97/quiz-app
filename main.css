@@ -122,3 +122,24 @@ div.results .result{
     align-items: center;
     justify-content: center;
 }
+.back-button{
+    margin: 0 auto;
+    display: block;
+    width: 150px;
+    height: 35px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+background-color: #0075ff;}
+
+.choices{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.choice{
+cursor: pointer;
+}

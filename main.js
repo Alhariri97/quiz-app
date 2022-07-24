@@ -1,35 +1,71 @@
 // Select Elements
-let countSpan = document.querySelector(".count span");
 let bullests = document.querySelector(".bullets");
 let bullitSpanContainer = document.querySelector(".bullets .spans");
 let quizArea = document.querySelector(".quiz-area");
 let answersArea = document.querySelector(".answers-area");
-let sumbitButton = document.querySelector(".submit-button");
+// let sumbitButton = document.querySelector(".submit-button");
 let resultsContainer = document.querySelector(".results");
 let countdownElement = document.querySelector(".countdown");
+let getHtml = document.querySelectorAll(".choice");
+let quizInfo = document.querySelector(".quiz-info");
+let choices = document.querySelector(".choices");
+
+// hide the elments when the app started
+answersArea.style.display = "none";
+quizArea.style.display = "none";
+quizInfo.style.display = "none";
+bullests.style.display = "none";
+
+getHtml.forEach((ele) =>
+  ele.addEventListener("click", (e) => {
+    // show the elments when a choise
+    answersArea.style.display = "block";
+    quizArea.style.display = "block";
+    quizInfo.style.display = "block";
+    bullests.style.display = "flex";
+    let choosen = e.target.dataset.set;
+    getAllQuestions(choosen);
+    choices.remove();
+  })
+);
+
+// hide all elements when it first render
+function hideAllElements() {
+  console.log(3);
+}
+
 let currentIndex = 0;
 let rightAnswers = 0;
 let countdownInterval;
 
-let getAllQuestions = () => {
+let getAllQuestions = (choosenLanguage) => {
   let myRequest = new XMLHttpRequest();
-  myRequest.open("GET", "html-questions.json", true);
+  myRequest.open("GET", `${choosenLanguage}-questions.json`, true);
   myRequest.send();
   myRequest.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
       let questionsObject = JSON.parse(this.responseText);
       let questionCount = questionsObject.length;
+      console.log(questionCount);
       //   Create bulletes and Set the number of questions
       createBullets(questionCount);
       //   Render questions on the screen
       addQuestionData(questionsObject[currentIndex], questionCount);
+      // create the quiz ifo
+      createInfo(choosenLanguage, questionCount);
 
       // Start Count Down
-      countdown(19, questionCount);
+      countdown(19, questionCount, questionCount);
 
       //   Click on submit
+      // create a button
+      let submitButton = document.createElement("button");
+      submitButton.innerText = "Submit answer";
+      submitButton.className = "submit-button";
+      bullests.parentElement.insertBefore(submitButton, bullests);
+      console.log(submitButton);
 
-      sumbitButton.onclick = () => {
+      submitButton.onclick = () => {
         // Get correct answer
         let correct_answer = questionsObject[currentIndex].correct_answer;
         currentIndex++;
@@ -51,10 +87,7 @@ let getAllQuestions = () => {
   };
 };
 
-getAllQuestions();
-
 function createBullets(num) {
-  countSpan.innerHTML = num;
   for (let i = 0; i < num; i++) {
     // create bullet
     let theBullet = document.createElement("span");
@@ -127,10 +160,16 @@ function handleBullets() {
 
 function showResults(count) {
   let theResults;
+  let back = document.createElement("button");
+  back.className = "back-button";
+  back.onclick = () => {
+    document.location.reload();
+  };
+  back.innerText = "Back";
   if (currentIndex === count) {
     quizArea.remove();
     answersArea.remove();
-    sumbitButton.remove();
+    document.querySelector(".submit-button").remove();
     bullests.remove();
     if (rightAnswers > count / 2 && rightAnswers < count) {
       theResults = `<span class="good"> Good</span>, ${rightAnswers} out of ${count}.`;
@@ -143,6 +182,7 @@ function showResults(count) {
     resultInnerCont.className = "result";
     resultInnerCont.innerHTML = theResults;
     resultsContainer.appendChild(resultInnerCont);
+    document.querySelector(".quiz-app").appendChild(back);
   }
 }
 
@@ -161,8 +201,14 @@ function countdown(duration, count) {
       countdownElement.innerHTML = `${minutes}:${seconds}`;
       if (--duration < 0) {
         clearInterval(countdownInterval);
-        sumbitButton.click();
+        document.querySelector(".submit-button").click();
       }
     }, 1000);
   }
+}
+
+function createInfo(cat, count) {
+  console.log(count);
+  quizInfo.innerHTML = ` <div class="category">Category: <span>${cat}</span></div>
+  <div class="count">Questions Count: <span>${count}</span></div>`;
 }

@@ -1,0 +1,42 @@
+[
+    {
+        "title": "What are JavaScript Data Types?",
+        "answer_1": "Boolean, Object, Undefined",
+        "answer_2": "Number, String, Boolean, Object, Undefined",
+        "answer_3": "Number, String, Boolean, Object, Undefined, Null",
+        "answer_4": "Number, String, Boolean, Object, Undefined, Null, Array",
+        "correct_answer": "Number, String, Boolean, Object, Undefined"
+    },
+    {
+        "title": "What is the use of isNaN function?",
+        "answer_1": "To create a Number",
+        "answer_2": "There no such a thing",
+        "answer_3": "isNan function returns true if the argument is not a number; otherwise, it is true",
+        "answer_4": "isNan function returns true if the argument is not a number; otherwise, it is false",
+        "correct_answer": "isNan function returns true if the argument is not a number; otherwise, it is false"
+    },
+    {
+        "title": "What is negative Infinity?",
+        "answer_1": "It's a normal number",
+        "answer_2": "There no such a thing",
+        "answer_3": "All are correct",
+        "answer_4": "Negative Infinity is a number in JavaScript which can be derived by dividing negative number by zero.",
+        "correct_answer": "Negative Infinity is a number in JavaScript which can be derived by dividing negative number by zero"
+    },
+    {
+        "title": "Which company developed JavaScript?",
+        "answer_1": "Netscape is the software company that developed JavaScript",
+        "answer_2": "Secripto is the software company that developed JavaScript",
+        "answer_3": "Google",
+        "answer_4": "It's open source so multible people has developed it",
+        "correct_answer": "Netscape is the software company that developed JavaScript"
+    },
+    {
+        "title": "What is ‘this’ keyword in JavaScript?",
+        "answer_1": "'this' keyword refers to the window object",
+        "answer_2": "'this' keyword refers to Javascript itself",
+        "answer_3": "‘This’ keyword refers to the object from where it was called.",
+        "answer_4": "All are correct",
+        "correct_answer": "‘This’ keyword refers to the object from where it was called."
+    }
+]
